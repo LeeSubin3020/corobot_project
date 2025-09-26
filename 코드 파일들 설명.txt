@@ -1,0 +1,30 @@
+test_wakeup_node : 
+	: hello rokey 음성을 대기하다가 입력되면 service call
+			
+			
+stt_parser_topic_pub_srv_server
+	: service call을 받아 음성 녹음 실행, 키워드 추출 및 파싱, 퍼블리쉬
+	paint_command 토픽, target_color
+
+paint_picker_node.py : paint_command 토픽을 받고 해당하는 클래스 이름으로 변환해서 yolo
+
+			  
+test_copy_seg_topic_sub_move.py 코드 진행
+
+	  		
+	  		
+/paint_command 수신 → 대상 색상 결정
+       ↓
+RealSense 카메라 촬영 & YOLO 세그멘테이션
+       ↓
+타겟 색상 위치 픽셀 좌표 & 깊이값 추출
+       ↓
+카메라 좌표 → 로봇 Base 좌표 변환
+       ↓
+로봇이 해당 위치 위로 이동
+       ↓
+/calculate_and_rotate 서비스 호출 → 그리퍼 정렬
+       ↓
+/gripper/aligned 신호 수신 → detect_and_pick() 실행
+       ↓
+집기 동작 수행 
